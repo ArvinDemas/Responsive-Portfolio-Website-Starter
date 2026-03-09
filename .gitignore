@@ -1,0 +1,15 @@
+# Antigravity AI Agent Folders
+.agent/
+.agents/
+_agent/
+_agents/
+.gemini/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
