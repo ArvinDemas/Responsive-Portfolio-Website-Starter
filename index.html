@@ -1,541 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arvin Demas Naryama - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        @keyframes pulse-slow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .animate-float { animation: float 3s ease-in-out infinite; }
-        .animate-pulse-slow { animation: pulse-slow 2s ease-in-out infinite; }
-        html { scroll-behavior: smooth; }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #1f2937; }
-        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #059669; }
-    </style>
+    <title>Arvin Demas Naryama — UI/UX Designer & Web Developer</title>
+    <meta name="description"
+        content="Portfolio of Arvin Demas Naryama — Information Systems student specializing in UI/UX Design and Web Development. Based in Yogyakarta, Indonesia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Dancing+Script:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-900 text-white">
-    
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="text-xl font-bold">
-                    <span class="text-emerald-400">A</span>RVIN<span class="text-emerald-400">.</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8" id="desktop-menu">
-                    <a href="#home" class="hover:text-emerald-400 transition-colors">Home</a>
-                    <a href="#projects" class="hover:text-emerald-400 transition-colors">Projects</a>
-                    <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
-                    <a href="#services" class="hover:text-emerald-400 transition-colors">Services</a>
-                    <a href="#faq" class="hover:text-emerald-400 transition-colors">FAQ</a>
-                </div>
 
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden" id="mobile-menu-btn" onclick="toggleMenu()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
+<body>
+    <!-- Animated motion background — subtle grid lines -->
+    <canvas id="motionBackground"></canvas>
 
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden bg-gray-800 border-t border-gray-700" id="mobile-menu">
-            <a href="#home" class="block px-4 py-3 hover:bg-gray-700 transition-colors" onclick="toggleMenu()">Home</a>
-            <a href="#projects" class="block px-4 py-3 hover:bg-gray-700 transition-colors" onclick="toggleMenu()">Projects</a>
-            <a href="#about" class="block px-4 py-3 hover:bg-gray-700 transition-colors" onclick="toggleMenu()">About</a>
-            <a href="#services" class="block px-4 py-3 hover:bg-gray-700 transition-colors" onclick="toggleMenu()">Services</a>
-            <a href="#faq" class="block px-4 py-3 hover:bg-gray-700 transition-colors" onclick="toggleMenu()">FAQ</a>
+    <!-- Grain overlay -->
+    <div class="grain"></div>
+
+    <!-- Custom cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="nav-logo nav-wordmark"><span class="wm-serif">ARVIN</span><span class="wm-sans">DEMAS</span></a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-        <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-gray-900 to-teal-900/20"></div>
-        
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 text-4xl animate-pulse-slow">✨</div>
-        <div class="absolute top-40 right-20 text-3xl animate-float">⭐</div>
-        <div class="absolute bottom-40 left-20 text-3xl animate-pulse-slow">💫</div>
-        <div class="absolute bottom-20 right-10 text-4xl animate-float">✨</div>
-        
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-            <div class="mb-6 text-6xl"></div>
-            <!-- 🔧 UBAH FOTO: Ganti emoji 👨‍💻 dengan <img src="foto-kamu.jpg" class="w-32 h-32 mx-auto rounded-full"> -->
-            
-            <div class="text-sm text-emerald-400 mb-2">👋 HELLO THERE!</div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                Welcome to<br>
-                my digital humble abode
-            </h1>
-            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
-                <!-- 🔧 UBAH DESKRIPSI DI SINI -->
-                I'm Arvin Demas Naryama, a passionate Information Systems student specializing in UI/UX design and web development
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <a href="#projects" class="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-full transition-colors inline-block">
-                    Get Started
-                </a>
-                <a href="#about" class="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-full transition-colors inline-block">
-                    Say Hello 👋
-                </a>
-            </div>
+    <!-- ═══════════════ HERO — CINEMATIC INTERACTIVE ═══════════════ -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <canvas id="hero-canvas"></canvas>
+        </div>
 
-            <div class="flex flex-wrap justify-center items-center gap-8 text-gray-600 text-sm">
-                <span>Google</span>
-                <span>Microsoft</span>
-                <span>UX Design</span>
-                <span>Netflix</span>
-                <span>Disney+</span>
+        <!-- Infinite marquee text rows (Now inside hero, behind the photo) -->
+        <div class="hero-marquee-wrap">
+            <div class="hero-marquee hero-marquee--left">
+                <div class="hero-marquee-inner">
+                    <span>CREATIVE DEVELOPER &nbsp;✦&nbsp; INTERACTIVE DESIGN &nbsp;✦&nbsp; DIGITAL EXPERIENCES &nbsp;✦&nbsp; BUILDING THE FUTURE &nbsp;✦&nbsp;</span>
+                    <span>CREATIVE DEVELOPER &nbsp;✦&nbsp; INTERACTIVE DESIGN &nbsp;✦&nbsp; DIGITAL EXPERIENCES &nbsp;✦&nbsp; BUILDING THE FUTURE &nbsp;✦&nbsp;</span>
+                </div>
+            </div>
+            <div class="hero-marquee hero-marquee--right">
+                <div class="hero-marquee-inner">
+                    <span>INNOVATION &nbsp;✦&nbsp; TECHNOLOGY &nbsp;✦&nbsp; DESIGN THINKING &nbsp;✦&nbsp; USER EXPERIENCE &nbsp;✦&nbsp;</span>
+                    <span>INNOVATION &nbsp;✦&nbsp; TECHNOLOGY &nbsp;✦&nbsp; DESIGN THINKING &nbsp;✦&nbsp; USER EXPERIENCE &nbsp;✦&nbsp;</span>
+                </div>
+            </div>
+            <!-- FIX 2: Centered portrait card over marquee text -->
+            <div class="marquee-photo-card">
+                <img src="3.png" alt="Arvin Demas Naryama" draggable="false">
             </div>
         </div>
 
-        <a href="#projects" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-            <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-        </a>
-    </section>
+        <!-- Depth lighting glow behind content -->
+        <div class="hero-depth-glow"></div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="text-sm text-emerald-400 mb-2">PORTFOLIO</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured Case Studies</h2>
-                <p class="text-gray-400">Collection of past works brought to life through code</p>
+        <div class="hero-content">
+
+            <!-- Fluid Cursor-Driven Hero Image -->
+            <div class="hero-interactive" id="heroInteractive">
+                <!-- Ambient glow layer — follows cursor loosely -->
+                <div class="hero-glow"></div>
+                <!-- Main portrait — parallax + scale + rotation -->
+                <img src="3.png" alt="Arvin Demas Naryama" class="hero-image" draggable="false">
+                <!-- Depth overlay layer — slight secondary parallax -->
+                <div class="hero-depth-layer"></div>
+                <!-- Diagonal accent sweep (landonorris-style) -->
+                <div class="hero-accent-slash"></div>
             </div>
 
-            <!-- 🔧 UBAH PROJECTS DI SINI -->
-            <div class="space-y-8">
+            <div class="hero-bottom-content">
+                <div class="hero-sub"></div>
+                <p class="hero-tagline">Passionate Information Systems student crafting intuitive digital experiences
+                    through design and code.</p>
+                <div class="hero-ctas">
+                    <a href="#projects" class="btn-primary">View Projects →</a>
+                    <a href="#contact" class="btn-ghost">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIX 4: Circuit card — placed directly inside .hero for absolute positioning -->
+        <div class="hero-corner-graphic">
+            <svg viewBox="0 0 100 120" fill="none">
+                <path class="circuit-path" d="M0,105 L30,105 L50,85 L50,20 L60,10 L100,10" stroke="var(--emerald)" stroke-width="1.5" stroke-linejoin="round"/>
+                <circle class="circuit-dot" cx="0" cy="105" r="3" fill="var(--emerald)"/>
+                <circle class="circuit-dot" cx="100" cy="10" r="3" fill="var(--emerald)"/>
+                <path class="circuit-bg" d="M15,115 L35,115 L55,95 L55,30 L65,20 L100,20" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-linejoin="round"/>
+            </svg>
+            <div class="hero-corner-text">SYS.TECH.01 // UI.DEV</div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ═══════════════ SCROLL STORY — CINEMATIC TRANSITION ═══════════════ -->
+    <section class="scroll-story" id="scrollStory">
+        <!-- Parallax background layer -->
+        <div class="scroll-story__bg"></div>
+
+        <!-- Narrative text block -->
+        <div class="scroll-story__content">
+            <div class="scroll-story__text">
+                <p class="scroll-story__line" data-delay="0"><span class="text-inner">Redefining limits.</span><span class="block-overlay"></span></p>
+                <p class="scroll-story__line" data-delay="1"><span class="text-inner">Chasing bold ideas.</span><span class="block-overlay"></span></p>
+                <p class="scroll-story__line" data-delay="2"><span class="text-inner">Turning creativity into impact.</span><span class="block-overlay"></span></p>
+                <p class="scroll-story__line" data-delay="3"><span class="text-inner">Building a legacy through design and technology.</span><span class="block-overlay"></span></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════ PROJECTS ═══════════════ -->
+    <section class="section" id="projects">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">Selected Work</h2>
+            <div class="section-line"></div>
+
+            <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="bg-gradient-to-br from-emerald-900 to-teal-800 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center hover:scale-[1.02] transition-transform">
-                    <div>
-                        <div class="text-sm text-emerald-300 mb-3">APRIL - 2024</div>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Website Himpunan Mahasiswa Sistem Informasi</h3>
-                        <p class="text-gray-300 mb-6">Prototipe desain website untuk organisasi mahasiswa dengan fokus pada user experience</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Desain UI/UX modern dan intuitif</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Responsive untuk semua perangkat</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Sistem manajemen konten</span>
-                            </li>
-                        </ul>
-                        <a href="https://www.figma.com/proto/LUGmZjUwncCnPOUxDZKqVp/UI-Web-Himasisfo?node-id=9-16&p=f&t=7iJFY4HwanwTl2m1-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" 
-   class="bg-white text-gray-900 px-6 py-2 rounded-full hover:bg-gray-100 transition-colors inline-block"
-   target="_blank">
-   View Project →
-</a>
+                <div class="project-card pc-emerald">
+                    <span class="card-num">01</span>
+                    <div class="project-year">April 2024</div>
+                    <h3 class="project-name">Website Himpunan Mahasiswa Sistem Informasi</h3>
+                    <p class="project-desc">Prototipe desain website untuk organisasi mahasiswa dengan fokus pada user
+                        experience yang modern dan intuitif.</p>
+                    <div class="project-tags">
+                        <span>UI/UX</span><span>Figma</span><span>Prototyping</span>
                     </div>
-                    <div class="flex items-center justify-center">
-                        <div class="text-9xl">🌐</div>
-                    </div>
+                    <a href="https://www.figma.com/proto/LUGmZjUwncCnPOUxDZKqVp/UI-Web-Himasisfo?node-id=9-16&p=f&t=7iJFY4HwanwTl2m1-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+                        target="_blank" class="project-link">View Project →</a>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center hover:scale-[1.02] transition-transform">
-                    <div>
-                        <div class="text-sm text-emerald-300 mb-3">JUNE - 2024</div>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Evaluasi Layanan TI PT Tritama</h3>
-                        <p class="text-gray-300 mb-6">Analisis dan evaluasi sistem booking engine untuk meningkatkan efisiensi layanan</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Audit sistem IT komprehensif</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Rekomendasi perbaikan sistem</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Optimasi proses booking</span>
-                            </li>
-                        </ul>
-                        <a href="https://drive.google.com/file/d/1ZWRsEbhrtx4gAxc4jXfnDr5ZrgUjvAp4/view?usp=sharing" 
-   class="bg-white text-gray-900 px-6 py-2 rounded-full hover:bg-gray-100 transition-colors inline-block"
-   target="_blank">
-   View Document →
-</a>
+                <div class="project-card pc-blue">
+                    <span class="card-num">02</span>
+                    <div class="project-year">June 2024</div>
+                    <h3 class="project-name">Evaluasi Layanan TI PT Tritama</h3>
+                    <p class="project-desc">Analisis dan evaluasi sistem booking engine untuk meningkatkan efisiensi
+                        layanan IT perusahaan.</p>
+                    <div class="project-tags">
+                        <span>IT Audit</span><span>Analysis</span><span>Report</span>
                     </div>
-                    <div class="flex items-center justify-center">
-                        <div class="text-9xl">📊</div>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1ZWRsEbhrtx4gAxc4jXfnDr5ZrgUjvAp4/view?usp=sharing"
+                        target="_blank" class="project-link">View Document →</a>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="bg-gradient-to-br from-amber-900 to-yellow-800 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center hover:scale-[1.02] transition-transform">
-                    <div>
-                        <div class="text-sm text-emerald-300 mb-3">AUG - 2024</div>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Website Rumah Sakit</h3>
-                        <p class="text-gray-300 mb-6">Proyek akhir praktikum pemrograman web dengan fitur lengkap manajemen rumah sakit</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Sistem pendaftaran online</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Database management terintegrasi</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Interface user-friendly</span>
-                            </li>
-                        </ul>
-                        <a href="https://drive.google.com/file/d/1jTE69UfGX23Ac2ClT852BlH9sjhRX6Gh/view?usp=sharing" 
-   class="bg-white text-gray-900 px-6 py-2 rounded-full hover:bg-gray-100 transition-colors inline-block"
-   target="_blank">
-   View Document →
-</a>
+                <div class="project-card pc-amber">
+                    <span class="card-num">03</span>
+                    <div class="project-year">August 2024</div>
+                    <h3 class="project-name">Website Rumah Sakit</h3>
+                    <p class="project-desc">Proyek akhir praktikum pemrograman web dengan fitur lengkap manajemen rumah
+                        sakit dan sistem pendaftaran online.</p>
+                    <div class="project-tags">
+                        <span>PHP</span><span>MySQL</span><span>Web Dev</span>
                     </div>
-                    <div class="flex items-center justify-center">
-                        <div class="text-9xl">🏥</div>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1jTE69UfGX23Ac2ClT852BlH9sjhRX6Gh/view?usp=sharing"
+                        target="_blank" class="project-link">View Document →</a>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-3xl p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center hover:scale-[1.02] transition-transform">
-                    <div>
-                        <div class="text-sm text-emerald-300 mb-3">NOV - 2024</div>
-                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Aplikasi Williams Racing F1</h3>
-                        <p class="text-gray-300 mb-6">Aplikasi mobile untuk penggemar Formula 1 dengan real-time updates</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Real-time race updates</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Team statistics & analytics</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-emerald-400 mr-2">✓</span>
-                                <span class="text-gray-300">Interactive race calendar</span>
-                            </li>
-                        </ul>
-                        <a href="https://drive.google.com/file/d/1SrNv5MhM4ZPsTi37880BhwzI0-xVX0YB/view?usp=sharing" 
-   class="bg-white text-gray-900 px-6 py-2 rounded-full hover:bg-gray-100 transition-colors inline-block"
-   target="_blank">
-   View Document →
-</a>
+                <div class="project-card pc-purple">
+                    <span class="card-num">04</span>
+                    <div class="project-year">November 2024</div>
+                    <h3 class="project-name">Aplikasi Williams Racing F1</h3>
+                    <p class="project-desc">Aplikasi mobile untuk penggemar Formula 1 dengan real-time updates,
+                        statistics, dan interactive race calendar.</p>
+                    <div class="project-tags">
+                        <span>Kotlin</span><span>Mobile</span><span>API</span>
                     </div>
-                    <div class="flex items-center justify-center">
-                        <div class="text-9xl">🏎️</div>
-                    </div>
+                    <a href="https://drive.google.com/file/d/1SrNv5MhM4ZPsTi37880BhwzI0-xVX0YB/view?usp=sharing"
+                        target="_blank" class="project-link">View Document →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section class="py-20 px-4 bg-gray-800/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="text-sm text-emerald-400 mb-2">ACHIEVEMENTS</div>
-                <h2 class="text-4xl md:text-5xl font-bold">Read My Narrative</h2>
-                <p class="text-gray-400 mt-4">Highlights of competitions and accomplishments</p>
+    <!-- ═══════════════ ACHIEVEMENTS ═══════════════ -->
+    <section class="section achievements-section" id="achievements">
+        <div style="max-width:1100px;margin:0 auto;">
+            <div style="text-align:center;">
+                <div class="section-label">Track Record</div>
+                <h2 class="section-title">Achievements</h2>
+                <div class="section-line" style="margin-left:auto;margin-right:auto;"></div>
             </div>
 
-            <!-- 🔧 UBAH ACHIEVEMENTS DI SINI -->
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 rounded-2xl p-6 hover:bg-gray-750 transition-colors border border-gray-700">
-                    <div class="text-4xl mb-4">🥇</div>
-                    <h3 class="text-xl font-bold mb-2 text-emerald-400">GOLD Medal</h3>
-                    <p class="text-gray-400 text-sm">International Virtual Competition of Creative & Innovative Idea (IVCCII) 2025</p>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">🥇</div>
+                    <h3 class="achievement-title">GOLD Medal</h3>
+                    <p class="achievement-desc">International Virtual Competition of Creative & Innovative Idea (IVCCII)
+                        2025</p>
                 </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-6 hover:bg-gray-750 transition-colors border border-gray-700">
-                    <div class="text-4xl mb-4">🥉</div>
-                    <h3 class="text-xl font-bold mb-2 text-emerald-400">JUARA 3</h3>
-                    <p class="text-gray-400 text-sm">Business Model Canvas Competition FKBM-IK 2025</p>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-6 hover:bg-gray-750 transition-colors border border-gray-700">
-                    <div class="text-4xl mb-4">🏆</div>
-                    <h3 class="text-xl font-bold mb-2 text-emerald-400">PKM-GFT</h3>
-                    <p class="text-gray-400 text-sm">Program Kreativitas Mahasiswa Tahun 2024</p>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-6 hover:bg-gray-750 transition-colors border border-gray-700">
-                    <div class="text-4xl mb-4">🥈</div>
-                    <h3 class="text-xl font-bold mb-2 text-emerald-400">JUARA 2</h3>
-                    <p class="text-gray-400 text-sm">ADPRETION Business Plan Competition 2024</p>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-6 hover:bg-gray-750 transition-colors border border-gray-700">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-xl font-bold mb-2 text-emerald-400">FINALIST</h3>
-                    <p class="text-gray-400 text-sm">Business Plan Competition IPB Business Festival 2024</p>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-6 hover:bg-gray-750 transition-colors border border-gray-700">
-                    <div class="text-4xl mb-4">⭐</div>
-                    <h3 class="text-xl font-bold mb-2 text-emerald-400">FINALIS</h3>
-                    <p class="text-gray-400 text-sm">SEMAR ENTREPRENEUR 2025</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="text-sm text-emerald-400 mb-2">MY SERVICES</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Diverse Services To Meet Needs</h2>
-                <p class="text-gray-400">Comprehensive solutions for your digital projects</p>
-            </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🥉</div>
+                    <h3 class="achievement-title">JUARA 3</h3>
+                    <p class="achievement-desc">Business Model Canvas Competition FKBM-IK 2025</p>
+                </div>
 
-            <!-- 🔧 UBAH SERVICES DI SINI -->
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors border border-gray-700 group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🎨</div>
-                    <h3 class="text-2xl font-bold mb-3">UI/UX Design</h3>
-                    <p class="text-gray-400">Creating intuitive and beautiful user interfaces with Figma</p>
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h3 class="achievement-title">PKM-GFT</h3>
+                    <p class="achievement-desc">Program Kreativitas Mahasiswa Tahun 2024</p>
                 </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors border border-gray-700 group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">💻</div>
-                    <h3 class="text-2xl font-bold mb-3">Web Development</h3>
-                    <p class="text-gray-400">Building responsive websites with PHP, React, and modern frameworks</p>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">🥈</div>
+                    <h3 class="achievement-title">JUARA 2</h3>
+                    <p class="achievement-desc">ADPRETION Business Plan Competition 2024</p>
                 </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors border border-gray-700 group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📱</div>
-                    <h3 class="text-2xl font-bold mb-3">Mobile Development</h3>
-                    <p class="text-gray-400">Creating mobile apps using Kotlin and Dart/Flutter</p>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎯</div>
+                    <h3 class="achievement-title">FINALIST</h3>
+                    <p class="achievement-desc">Business Plan Competition IPB Business Festival 2024</p>
                 </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors border border-gray-700 group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🗄️</div>
-                    <h3 class="text-2xl font-bold mb-3">Database Management</h3>
-                    <p class="text-gray-400">Designing and managing databases with MySQL and SQL</p>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors border border-gray-700 group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">📊</div>
-                    <h3 class="text-2xl font-bold mb-3">Data Analysis</h3>
-                    <p class="text-gray-400">Analyzing data using RStudio, SPSS, and Smart PLS</p>
-                </div>
-                
-                <div class="bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-colors border border-gray-700 group">
-                    <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🔍</div>
-                    <h3 class="text-2xl font-bold mb-3">IT Consulting</h3>
-                    <p class="text-gray-400">Strategic IT evaluation and system optimization</p>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">⭐</div>
+                    <h3 class="achievement-title">FINALIS</h3>
+                    <p class="achievement-desc">SEMAR ENTREPRENEUR 2025</p>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    <!-- About Section -->
-    <section id="about" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="text-sm text-emerald-400 mb-2">ABOUT ME</div>
-                <h2 class="text-4xl md:text-5xl font-bold">Know who am I</h2>
+    <!-- ═══════════════ SERVICES ═══════════════ -->
+    <section class="section" id="services">
+        <div style="max-width:1100px;margin:0 auto;">
+            <div style="text-align:center;">
+                <div class="section-label">What I Do</div>
+                <h2 class="section-title">Services</h2>
+                <div class="section-line" style="margin-left:auto;margin-right:auto;"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="bg-emerald-500/10 border-4 border-emerald-500 rounded-3xl p-2 inline-block">
-                        <div class="bg-gray-800 rounded-2xl p-8 text-center">
-                            <!-- 🔧 UBAH FOTO: Ganti "foto-arvin.jpg" dengan nama file foto kamu -->
-                            <img src="foto-arvin.jpg" alt="Arvin Demas" class="w-48 h-48 mx-auto rounded-full object-cover mb-4 border-4 border-emerald-400">
-                            <div class="text-2xl font-bold">Arvin Demas</div>
-                            <div class="text-emerald-400">Information Systems Student</div>
-                        </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-desc">Creating intuitive and beautiful user interfaces with Figma</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-desc">Building responsive websites with PHP, React, and modern frameworks</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">Mobile Development</h3>
+                    <p class="service-desc">Creating mobile apps using Kotlin and Dart/Flutter</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🗄️</div>
+                    <h3 class="service-title">Database Management</h3>
+                    <p class="service-desc">Designing and managing databases with MySQL and SQL</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Data Analysis</h3>
+                    <p class="service-desc">Analyzing data using RStudio, SPSS, and Smart PLS</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3 class="service-title">IT Consulting</h3>
+                    <p class="service-desc">Strategic IT evaluation and system optimization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ ABOUT ═══════════════ -->
+    <section class="section" id="about">
+        <div class="about-section">
+            <div class="section-label">The Person</div>
+            <h2 class="section-title">About Me</h2>
+            <div class="section-line"></div>
+
+            <div class="about-cols">
+                <div class="about-visual">
+                    <div class="about-monogram">AD</div>
+                    <div class="about-photo-frame">
+                        <img src="foto-arvin.JPG" alt="Arvin Demas Naryama" class="about-photo">
+                        <div
+                            style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;margin-bottom:.2rem;">
+                            Arvin Demas</div>
+                        <div style="color:var(--emerald);font-size:.9rem;">Information Systems Student</div>
                     </div>
                 </div>
 
-                <div class="space-y-6">
-                    <!-- 🔧 UBAH DESKRIPSI ABOUT DI SINI -->
-                    <h3 class="text-3xl font-bold">Hello! I'm Arvin Demas Naryama</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        I'm a 5th semester Information Systems student at UPN "Veteran" Yogyakarta with a GPA of 3.66. 
-                        I'm an innovative and creative individual with a strong interest in technology and business.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed">
-                        As a responsible team player, I excel at completing tasks and am always ready to develop 
-                        myself and contribute in environments that encourage growth and innovation.
-                    </p>
+                <div class="about-text">
+                    <h3>Hello! I'm Arvin Demas Naryama</h3>
+                    <p>I'm a 5th semester Information Systems student at UPN "Veteran" Yogyakarta with a GPA of 3.66.
+                        I'm an innovative and creative individual with a strong interest in technology and business.</p>
+                    <p>As a responsible team player, I excel at completing tasks and am always ready to develop
+                        myself and contribute in environments that encourage growth and innovation.</p>
 
-                    <div class="grid grid-cols-2 gap-4 pt-4">
-                        <div>
-                            <h4 class="font-bold text-emerald-400 mb-2">Skills</h4>
-                            <ul class="text-sm text-gray-400 space-y-1">
-                                <li>• UI/UX Design</li>
-                                <li>• Web Development</li>
-                                <li>• Database Management</li>
-                                <li>• Data Analysis</li>
+                    <div class="about-skills-grid">
+                        <div class="skill-column">
+                            <h4>Skills</h4>
+                            <ul>
+                                <li>UI/UX Design</li>
+                                <li>Web Development</li>
+                                <li>Database Management</li>
+                                <li>Data Analysis</li>
                             </ul>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-emerald-400 mb-2">Tech Stack</h4>
-                            <ul class="text-sm text-gray-400 space-y-1">
-                                <li>• React, PHP, Kotlin</li>
-                                <li>• Figma, Adobe</li>
-                                <li>• MySQL, SPSS</li>
-                                <li>• HTML, CSS, JS</li>
+                        <div class="skill-column">
+                            <h4>Tech Stack</h4>
+                            <ul>
+                                <li>React, PHP, Kotlin</li>
+                                <li>Figma, Adobe</li>
+                                <li>MySQL, SPSS</li>
+                                <li>HTML, CSS, JS</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- 🔧 UBAH LINK CV DI SINI -->
-                    <a href="cv-arvin-demas.pdf" download class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-full transition-colors mt-6">
-                        Download CV
-                    </a>
+                    <a href="CV Arvin Demas Naryama.pdf" download class="btn-download">Download CV ↓</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="py-20 px-4 bg-gray-800/50">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
-                <p class="text-gray-400">Common questions about my work and services</p>
+    <!-- ═══════════════ FAQ ═══════════════ -->
+    <section class="section" id="faq" style="background:var(--bg2);">
+        <div style="max-width:800px;margin:0 auto;">
+            <div style="text-align:center;">
+                <div class="section-label">Questions</div>
+                <h2 class="section-title">FAQ</h2>
+                <div class="section-line" style="margin-left:auto;margin-right:auto;"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <div class="mb-8">
-                        <div class="bg-gray-800 rounded-2xl p-2 mb-6">
-                            <div class="text-6xl text-center">🤔</div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">How can I start collaborating?</h3>
-                        <p class="text-gray-400">
-                            Simply reach out through email or LinkedIn. We'll discuss your project requirements 
-                            and I'll provide a tailored solution for your needs.
-                        </p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How can I start collaborating?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Simply reach out through email or LinkedIn. We'll discuss your project requirements and I'll
+                            provide a tailored solution for your needs.</p>
                     </div>
                 </div>
-
-                <div class="space-y-8">
-                    <div>
-                        <h3 class="text-xl font-bold mb-3">What services do you offer?</h3>
-                        <p class="text-gray-400">
-                            I specialize in UI/UX design, web development, IT consulting, and data analysis. 
-                            Each service is customized to meet specific project requirements.
-                        </p>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What services do you offer?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>I specialize in UI/UX design, web development, mobile development, IT consulting, and data
+                            analysis. Each service is customized to meet specific project requirements.</p>
                     </div>
-
-                    <div>
-                        <h3 class="text-xl font-bold mb-3">What's your typical project timeline?</h3>
-                        <p class="text-gray-400">
-                            Project timelines vary based on complexity. Simple websites take 2-3 weeks, 
-                            while complex applications may take 2-3 months.
-                        </p>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What's your typical timeline?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Project timelines vary based on complexity. Simple websites take 2-3 weeks, while complex
+                            applications may take 2-3 months.</p>
                     </div>
-
-                    <div>
-                        <h3 class="text-xl font-bold mb-3">Do you work with teams?</h3>
-                        <p class="text-gray-400">
-                            Absolutely! I have extensive experience collaborating with cross-functional teams 
-                            and can integrate seamlessly into your existing workflow.
-                        </p>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you work with teams?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! I have extensive experience collaborating with cross-functional teams and can
+                            integrate seamlessly into your existing workflow.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are you available for internships?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! I'm actively looking for internship opportunities in UI/UX design, web development, or
+                            IT consulting. Feel free to reach out.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Footer -->
-    <footer class="py-12 px-4 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-8">
-                <h3 class="text-3xl font-bold mb-4">Let's Work Together</h3>
-                <p class="text-gray-400 mb-6">Feel free to reach out for collaborations or just a friendly chat</p>
-                
-                <!-- 🔧 UBAH KONTAK DI SINI -->
-                <div class="flex flex-wrap justify-center gap-6 mb-8">
-                    <a href="mailto:adnaryama1@gmail.com" class="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        <span>adnaryama1@gmail.com</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/arvindemas" target="_blank" class="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full transition-colors">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="tel:+6281326811770" class="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-full transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                        <span>+62 813-2681-1770</span>
-                    </a>
-                </div>
+    <!-- ═══════════════ FOOTER / CONTACT ═══════════════ -->
+    <section class="footer-section" id="contact">
+        <div class="footer-cta-block">
+            <div class="footer-italic">Always Building.</div>
+            <h2 class="footer-heading">LET'S BUILD<br><span class="text-emerald">TOGETHER.</span></h2>
+
+            <div class="footer-links-row">
+                <a href="mailto:adnaryama1@gmail.com" class="footer-link-pill">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    adnaryama1@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/arvindemas" target="_blank" class="footer-link-pill">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                    LinkedIn
+                </a>
             </div>
 
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2025 Arvin Demas Naryama. All rights reserved.</p>
-                <p class="mt-2">Plosokuning IV, Minomartani, Sleman, Yogyakarta</p>
+            <!-- Photo rising from bottom — like landonorris.com -->
+            <div class="footer-photo-wrapper">
+                <img src="4.png" alt="Arvin Demas Naryama" class="footer-photo">
             </div>
         </div>
-    </footer>
 
-    <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const closeIcon = document.getElementById('close-icon');
-            
-            menu.classList.toggle('hidden');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        }
+        <div class="footer-bar">
+            <span>© 2025 Arvin Demas Naryama. All rights reserved.</span>
+        </div>
+    </section>
 
-        // Active nav link on scroll
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('text-emerald-400');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('text-emerald-400');
-                }
-            });
-        });
-    </script>
-
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
+
 </html>
